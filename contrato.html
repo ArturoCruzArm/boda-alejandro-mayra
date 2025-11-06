@@ -153,7 +153,37 @@
             display: block;
         }
 
+        .btn-invitacion {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 16px;
+            margin: 20px auto;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-invitacion:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        .btn-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
         @media print {
+            .btn-invitacion {
+                display: none;
+            }
             body {
                 background: white;
                 padding: 0;
@@ -184,6 +214,12 @@
 <body>
     <div class="container">
         <h1>CONTRATO DE PRESTACIÓN DE SERVICIOS DE FOTOGRAFÍA Y VIDEO</h1>
+
+        <div class="btn-container">
+            <a href="index.html" class="btn-invitacion">
+                💍 Ver Invitación de Boda (Vista Previa / Ejemplo)
+            </a>
+        </div>
 
         <p class="fecha">Fecha: 15 de octubre de 2025</p>
 
@@ -252,6 +288,28 @@
             <ul>
                 <li>• Ninguno</li>
             </ul>
+        </div>
+
+        <h2>SERVICIOS ADICIONALES DISPONIBLES (OPCIONALES)</h2>
+
+        <div class="info-block" style="background: #fff9e6; border-left: 4px solid #f39c12; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+            <strong>⭐ Servicios que puede contratar adicionalmente:</strong>
+            <ul style="margin-top: 10px;">
+                <li>💍 <strong>Invitación Web Interactiva</strong> - $1,000.00
+                    <ul style="margin-left: 25px; margin-top: 5px; color: #555;">
+                        <li>✓ Diseño personalizado con nombres y fechas</li>
+                        <li>✓ Cuenta regresiva automática</li>
+                        <li>✓ Música de fondo</li>
+                        <li>✓ Mapa y ubicaciones con GPS</li>
+                        <li>✓ Confirmación por WhatsApp</li>
+                        <li>✓ Galería de fotos</li>
+                        <li>✓ Hosting y dominio incluido</li>
+                    </ul>
+                </li>
+            </ul>
+            <p style="margin-top: 10px; font-style: italic; color: #555; font-size: 14px;">
+                💡 <strong>Nota:</strong> Puede ver un ejemplo de la invitación web usando el botón "Ver Invitación de Boda" arriba. Si decide contratarla, se agregará $1,000.00 al costo total.
+            </p>
         </div>
 
         <h2>MONTO TOTAL Y FORMA DE PAGO</h2>

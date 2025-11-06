@@ -106,6 +106,15 @@ Para finalizar la invitación y el contrato, necesitamos la siguiente informaci�
 
 ---
 
+## 💡 SERVICIO ADICIONAL DISPONIBLE (NO CONTRATADO AÚN)
+
+**Invitación Web Interactiva - $1,000.00**
+- La invitación web actual sirve como **VISTA PREVIA/EJEMPLO**
+- Si el cliente decide contratarla, el costo total aumentaría a $7,000.00
+- Incluye: diseño personalizado, música, mapa GPS, confirmación WhatsApp, hosting
+
+---
+
 ## 🚀 Cómo ver la invitación
 
 1. Abrir el archivo `index.html` en un navegador
