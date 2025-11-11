@@ -172,6 +172,8 @@ function initContentTransitions() {
                 // Aplicar animación letra por letra según el tipo de sección
                 if (sectionType === 'parents') {
                     animateParentsLetters(entry.target);
+                } else if (sectionType === 'padrinos') {
+                    animatePadrinosSection(entry.target);
                 } else if (sectionType === 'quote') {
                     animateQuoteLetters(entry.target);
                 } else if (sectionType === 'initial') {
@@ -534,6 +536,29 @@ function animateInfoSection(section) {
     const infoParagraphs = section.querySelectorAll('.info-card p');
     infoParagraphs.forEach((p, index) => {
         animateTextLetterByLetter(p, 1200 + (index * 150), 15);
+    });
+}
+
+// Animación para sección de padrinos
+function animatePadrinosSection(section) {
+    if (section.dataset.animated === 'true') return;
+    section.dataset.animated = 'true';
+
+    const heroSubtitle = section.querySelector('.hero-subtitle');
+    const heroTitle = section.querySelector('.hero-title');
+    const infoCards = section.querySelectorAll('.info-card h3');
+
+    if (heroSubtitle) animateTextLetterByLetter(heroSubtitle, 0, 30);
+    if (heroTitle) animateTextLetterByLetter(heroTitle, 300, 30);
+
+    infoCards.forEach((card, index) => {
+        animateTextLetterByLetter(card, 600 + (index * 100), 25);
+    });
+
+    // Animar también los párrafos de las tarjetas
+    const infoParagraphs = section.querySelectorAll('.info-card p');
+    infoParagraphs.forEach((p, index) => {
+        animateTextLetterByLetter(p, 1000 + (index * 100), 15);
     });
 }
 
