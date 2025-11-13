@@ -86,29 +86,41 @@
 .delay-6 { transition-delay: 0.6s; }
 
 /* ===================================
-   VIDEO DE FONDO
+   SECCIÓN DE VIDEO
    =================================== */
-.video-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1;
-    overflow: hidden;
-    pointer-events: none;
+.video-container {
+    max-width: 900px;
+    margin: 60px auto 0;
+    animation: fadeUp 1s ease-out 0.4s backwards;
 }
 
-.video-background iframe {
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* Proporción 16:9 */
+    height: 0;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    background: #000;
+    border: 3px solid var(--dorado-elegante);
+}
+
+.video-wrapper iframe {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100vw;
-    height: 56.25vw; /* Proporción 16:9 */
-    min-height: 100vh;
-    min-width: 177.77vh; /* Proporción 16:9 */
-    transform: translate(-50%, -50%);
-    pointer-events: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 18px;
+}
+
+.video-description {
+    text-align: center;
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    color: #333333;
+    margin-top: 1.5rem;
+    font-style: italic;
 }
 
 /* ===================================
@@ -127,7 +139,7 @@ html {
 body {
     font-family: var(--font-sans);
     color: var(--texto-oscuro);
-    background: transparent; /* Transparente para ver el video de fondo */
+    background: var(--crema-calido);
     line-height: 1.6;
     overflow-x: hidden;
     position: relative;
@@ -183,7 +195,7 @@ body::after {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: transparent; /* Cambiado a transparente para ver el video */
+    background: var(--crema-calido);
     z-index: 0;
     pointer-events: none;
 }
@@ -1235,6 +1247,19 @@ section {
 
     .info-grid {
         grid-template-columns: 1fr;
+    }
+
+    .video-container {
+        margin: 40px auto 0;
+    }
+
+    .video-wrapper {
+        border-width: 2px;
+    }
+
+    .video-description {
+        font-size: 1rem;
+        padding: 0 1rem;
     }
 }
 
