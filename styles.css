@@ -86,6 +86,32 @@
 .delay-6 { transition-delay: 0.6s; }
 
 /* ===================================
+   VIDEO DE FONDO
+   =================================== */
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.video-background iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 56.25vw; /* Proporción 16:9 */
+    min-height: 100vh;
+    min-width: 177.77vh; /* Proporción 16:9 */
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+/* ===================================
    RESET Y BASE
    =================================== */
 * {
