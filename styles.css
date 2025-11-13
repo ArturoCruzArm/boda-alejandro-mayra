@@ -127,7 +127,7 @@ html {
 body {
     font-family: var(--font-sans);
     color: var(--texto-oscuro);
-    background: var(--crema-calido);
+    background: transparent; /* Transparente para ver el video de fondo */
     line-height: 1.6;
     overflow-x: hidden;
     position: relative;
@@ -183,7 +183,7 @@ body::after {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: var(--crema-calido);
+    background: transparent; /* Cambiado a transparente para ver el video */
     z-index: 0;
     pointer-events: none;
 }
