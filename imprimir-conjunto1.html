@@ -77,7 +77,7 @@
             height: 11in;
             margin: 0 auto 30px;
             background: white;
-            padding: 0.5in;
+            padding: 0.4in;
             position: relative;
         }
 
@@ -85,19 +85,42 @@
             width: 100%;
             height: 100%;
             border: 3px solid var(--verde-eucalipto);
-            padding: 40px;
+            padding: 25px;
             background: linear-gradient(135deg, var(--crema-calido) 0%, white 100%);
             position: relative;
+            overflow: hidden;
         }
 
         .invitacion-familiar::before {
             content: '';
             position: absolute;
-            top: 15px;
-            left: 15px;
-            right: 15px;
-            bottom: 15px;
+            top: 12px;
+            left: 12px;
+            right: 12px;
+            bottom: 12px;
             border: 1px solid var(--dorado-elegante);
+        }
+
+        /* Decoraciones florales */
+        .floral-bg {
+            position: absolute;
+            opacity: 0.15;
+            z-index: 0;
+        }
+
+        .floral-top-left {
+            top: 20px;
+            left: 20px;
+            width: 120px;
+            height: 120px;
+        }
+
+        .floral-bottom-right {
+            bottom: 20px;
+            right: 20px;
+            width: 120px;
+            height: 120px;
+            transform: rotate(180deg);
         }
 
         .familiar-content {
@@ -115,153 +138,171 @@
 
         .familiar-subtitle {
             font-family: var(--font-sans);
-            font-size: 14px;
+            font-size: 11px;
             font-weight: 300;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             color: var(--verde-salvia);
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
         .familiar-title {
             font-family: var(--font-script);
-            font-size: 64px;
+            font-size: 48px;
             color: var(--verde-eucalipto);
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             line-height: 1;
+        }
+
+        .texto-formal {
+            text-align: center;
+            font-family: var(--font-serif);
+            font-size: 10px;
+            color: var(--verde-salvia);
+            font-style: italic;
+            margin: 8px 0;
+            line-height: 1.4;
         }
 
         .familiar-nombres {
             font-family: var(--font-serif);
-            font-size: 48px;
+            font-size: 36px;
             font-weight: 600;
             text-align: center;
-            margin: 25px 0;
-            line-height: 1.3;
+            margin: 12px 0;
+            line-height: 1.2;
         }
 
         .familiar-ampersand {
             font-family: var(--font-script);
-            font-size: 36px;
+            font-size: 28px;
             color: var(--dorado-elegante);
         }
 
         .familiar-padres {
             text-align: center;
-            margin: 30px 0;
+            margin: 12px 0;
         }
 
         .padres-titulo {
             font-family: var(--font-sans);
-            font-size: 11px;
+            font-size: 9px;
             font-weight: 600;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             color: var(--dorado-elegante);
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
         .padres-grupo {
-            margin: 20px 0;
+            margin: 8px 0;
         }
 
         .padres-label {
             font-family: var(--font-sans);
-            font-size: 10px;
+            font-size: 8px;
             font-weight: 600;
             letter-spacing: 1px;
             color: var(--verde-salvia);
-            margin-bottom: 8px;
+            margin-bottom: 4px;
         }
 
         .padres-nombres {
             font-family: var(--font-serif);
-            font-size: 16px;
+            font-size: 12px;
             color: var(--verde-eucalipto);
-            line-height: 1.6;
+            line-height: 1.5;
         }
 
         .familiar-padrinos {
-            margin: 25px 0;
-            padding: 20px;
+            margin: 12px 0;
+            padding: 12px 0;
             border-top: 1px solid var(--verde-salvia);
             border-bottom: 1px solid var(--verde-salvia);
         }
 
         .padrinos-titulo {
             font-family: var(--font-sans);
-            font-size: 11px;
+            font-size: 9px;
             font-weight: 600;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             color: var(--dorado-elegante);
             text-align: center;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
         .padrinos-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
+            gap: 10px;
             text-align: center;
         }
 
         .padrino-item {
-            font-size: 11px;
+            font-size: 9px;
         }
 
         .padrino-tipo {
             font-family: var(--font-sans);
             font-weight: 600;
             color: var(--verde-salvia);
-            margin-bottom: 4px;
+            margin-bottom: 3px;
+            font-size: 8px;
         }
 
         .padrino-nombre {
             font-family: var(--font-serif);
-            font-size: 10px;
+            font-size: 8px;
             color: var(--verde-eucalipto);
             line-height: 1.3;
         }
 
         .familiar-ceremonia {
             text-align: center;
-            margin: 25px 0;
+            margin: 12px 0;
         }
 
         .ceremonia-titulo {
             font-family: var(--font-sans);
-            font-size: 13px;
+            font-size: 10px;
             font-weight: 600;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             color: var(--dorado-elegante);
-            margin-bottom: 10px;
+            margin-bottom: 6px;
         }
 
         .ceremonia-fecha {
             font-family: var(--font-serif);
-            font-size: 20px;
+            font-size: 14px;
             font-weight: 600;
             color: var(--verde-eucalipto);
-            margin: 10px 0;
+            margin: 5px 0;
         }
 
         .ceremonia-hora {
             font-family: var(--font-sans);
-            font-size: 16px;
+            font-size: 13px;
             font-weight: 600;
             color: var(--verde-eucalipto);
         }
 
         .ceremonia-lugar {
             font-family: var(--font-serif);
-            font-size: 16px;
+            font-size: 12px;
             font-weight: 600;
             color: var(--verde-eucalipto);
-            margin: 8px 0;
+            margin: 4px 0;
         }
 
         .ceremonia-direccion {
             font-family: var(--font-sans);
-            font-size: 12px;
+            font-size: 9px;
             color: var(--verde-salvia);
+        }
+
+        .divider {
+            text-align: center;
+            color: var(--dorado-elegante);
+            font-size: 12px;
+            margin: 8px 0;
         }
 
         /* ===== INVITACIONES PERSONALES (9:5 - Formato Cartera) ===== */
@@ -270,32 +311,53 @@
             height: 11in;
             margin: 0 auto 30px;
             background: white;
-            padding: 0.5in;
+            padding: 0.4in;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 0.3in;
+            gap: 0.25in;
         }
 
         .invitacion-personal {
             width: 3.6in;
             height: 2in;
             border: 2px solid var(--verde-eucalipto);
-            padding: 20px;
+            padding: 15px;
             background: linear-gradient(135deg, var(--crema-calido) 0%, white 100%);
             position: relative;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: center;
+            overflow: hidden;
         }
 
         .invitacion-personal::before {
             content: '';
             position: absolute;
-            top: 8px;
-            left: 8px;
-            right: 8px;
-            bottom: 8px;
+            top: 6px;
+            left: 6px;
+            right: 6px;
+            bottom: 6px;
             border: 1px solid var(--dorado-elegante);
+        }
+
+        /* Flores pequeñas para personales */
+        .floral-personal {
+            position: absolute;
+            opacity: 0.1;
+            width: 60px;
+            height: 60px;
+            z-index: 0;
+        }
+
+        .floral-personal-tl {
+            top: 5px;
+            left: 5px;
+        }
+
+        .floral-personal-br {
+            bottom: 5px;
+            right: 5px;
+            transform: rotate(180deg);
         }
 
         .personal-content {
@@ -306,67 +368,67 @@
 
         .personal-titulo {
             font-family: var(--font-script);
-            font-size: 32px;
+            font-size: 28px;
             color: var(--verde-eucalipto);
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             line-height: 1;
         }
 
         .personal-nombres {
             font-family: var(--font-serif);
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 600;
-            margin: 8px 0;
-            line-height: 1.2;
+            margin: 6px 0;
+            line-height: 1.1;
         }
 
         .personal-ampersand {
             font-family: var(--font-script);
-            font-size: 18px;
+            font-size: 16px;
             color: var(--dorado-elegante);
         }
 
         .personal-recepcion {
-            margin-top: 10px;
+            margin-top: 8px;
         }
 
         .recepcion-titulo {
             font-family: var(--font-sans);
-            font-size: 9px;
+            font-size: 7px;
             font-weight: 600;
             letter-spacing: 1px;
             color: var(--dorado-elegante);
-            margin-bottom: 4px;
+            margin-bottom: 3px;
         }
 
         .recepcion-hora {
             font-family: var(--font-sans);
-            font-size: 13px;
+            font-size: 11px;
             font-weight: 600;
             color: var(--verde-eucalipto);
         }
 
         .recepcion-lugar {
             font-family: var(--font-serif);
-            font-size: 12px;
+            font-size: 10px;
             font-weight: 600;
             color: var(--verde-eucalipto);
-            margin: 4px 0;
+            margin: 3px 0;
         }
 
         .recepcion-direccion {
             font-family: var(--font-sans);
-            font-size: 8px;
+            font-size: 7px;
             color: var(--verde-salvia);
             line-height: 1.3;
         }
 
         .personal-fecha-small {
             font-family: var(--font-sans);
-            font-size: 10px;
+            font-size: 8px;
             color: var(--verde-eucalipto);
             font-weight: 600;
-            margin-top: 8px;
+            margin-top: 6px;
         }
     </style>
 </head>
@@ -376,11 +438,16 @@
     <!-- PÁGINA 1: INVITACIÓN FAMILIAR -->
     <div class="page-familiar page-break">
         <div class="invitacion-familiar">
+            <!-- Decoraciones florales de fondo -->
+            <img src="rosa-izquierda.png" alt="" class="floral-bg floral-top-left">
+            <img src="rosa-derecha.png" alt="" class="floral-bg floral-bottom-right">
+
             <div class="familiar-content">
                 <div>
                     <div class="familiar-header">
-                        <p class="familiar-subtitle">TE INVITAMOS A</p>
-                        <h1 class="familiar-title">Nuestra Boda</h1>
+                        <p class="familiar-subtitle">CON LA BENDICIÓN DE DIOS Y DE NUESTROS PADRES</p>
+                        <h1 class="familiar-title">Te Invitamos</h1>
+                        <p class="texto-formal">a compartir con nosotros la alegría de unirnos en matrimonio<br>y ser testigo de nuestro amor ante Dios</p>
                     </div>
 
                     <div class="familiar-nombres">
@@ -389,9 +456,11 @@
                         Mayra
                     </div>
 
+                    <div class="divider">✦ ✦ ✦</div>
+
                     <div class="familiar-padres">
-                        <p class="padres-titulo">CON LA BENDICIÓN DE NUESTROS PADRES</p>
-                        <div style="display: flex; justify-content: space-around; margin-top: 20px;">
+                        <p class="padres-titulo">NUESTROS PADRES</p>
+                        <div style="display: flex; justify-content: space-around; margin-top: 8px;">
                             <div class="padres-grupo">
                                 <p class="padres-label">Padres de la Novia</p>
                                 <div class="padres-nombres">
@@ -414,31 +483,31 @@
                         <div class="padrinos-grid">
                             <div class="padrino-item">
                                 <p class="padrino-tipo">Velación</p>
-                                <p class="padrino-nombre">Ramón Vargas<br>María Esther Martínez</p>
+                                <p class="padrino-nombre">Ramón Vargas<br>María E. Martínez</p>
                             </div>
                             <div class="padrino-item">
                                 <p class="padrino-tipo">Lazo</p>
-                                <p class="padrino-nombre">José Guadalupe Luna<br>Onesima Briones</p>
+                                <p class="padrino-nombre">J. Guadalupe Luna<br>Onesima Briones</p>
                             </div>
                             <div class="padrino-item">
                                 <p class="padrino-tipo">Anillos</p>
-                                <p class="padrino-nombre">José David Alvarado<br>Claudia Virginia Vargas</p>
+                                <p class="padrino-nombre">José D. Alvarado<br>Claudia V. Vargas</p>
                             </div>
                             <div class="padrino-item">
                                 <p class="padrino-tipo">Arras</p>
-                                <p class="padrino-nombre">Luis Gerardo Luna<br>Laura Rosa Martínez</p>
+                                <p class="padrino-nombre">Luis G. Luna<br>Laura R. Martínez</p>
                             </div>
                             <div class="padrino-item">
                                 <p class="padrino-tipo">Cristo</p>
-                                <p class="padrino-nombre">Cintya Lizbeth Luna</p>
+                                <p class="padrino-nombre">Cintya L. Luna</p>
                             </div>
                             <div class="padrino-item">
                                 <p class="padrino-tipo">Cojines</p>
-                                <p class="padrino-nombre">Laura Fernanda Paola Luna</p>
+                                <p class="padrino-nombre">Laura F. P. Luna</p>
                             </div>
                             <div class="padrino-item">
                                 <p class="padrino-tipo">Ramo Artificial</p>
-                                <p class="padrino-nombre">Mayra Guadalupe Ortiz</p>
+                                <p class="padrino-nombre">Mayra G. Ortiz</p>
                             </div>
                             <div class="padrino-item">
                                 <p class="padrino-tipo">Ramos Naturales</p>
@@ -453,11 +522,13 @@
                 </div>
 
                 <div class="familiar-ceremonia">
+                    <div class="divider">✦ ✦ ✦</div>
                     <p class="ceremonia-titulo">CEREMONIA RELIGIOSA</p>
                     <p class="ceremonia-fecha">Sábado 13 de Diciembre 2025</p>
                     <p class="ceremonia-hora">7:00 PM</p>
                     <p class="ceremonia-lugar">Parroquia San Juan Bautista de la Salle</p>
                     <p class="ceremonia-direccion">Iztaccíhuatl 2113, Piletas IV, León, Gto.</p>
+                    <p class="texto-formal" style="margin-top: 10px;">Tu presencia es nuestro mejor regalo</p>
                 </div>
             </div>
         </div>
@@ -467,6 +538,8 @@
     <div class="page-personales">
         <!-- Personal 1 -->
         <div class="invitacion-personal">
+            <img src="rosa-izquierda.png" alt="" class="floral-personal floral-personal-tl">
+            <img src="rosa-derecha.png" alt="" class="floral-personal floral-personal-br">
             <div class="personal-content">
                 <div>
                     <h2 class="personal-titulo">Recepción</h2>
@@ -486,6 +559,8 @@
 
         <!-- Personal 2 -->
         <div class="invitacion-personal">
+            <img src="rosa-izquierda.png" alt="" class="floral-personal floral-personal-tl">
+            <img src="rosa-derecha.png" alt="" class="floral-personal floral-personal-br">
             <div class="personal-content">
                 <div>
                     <h2 class="personal-titulo">Recepción</h2>
@@ -505,6 +580,8 @@
 
         <!-- Personal 3 -->
         <div class="invitacion-personal">
+            <img src="rosa-izquierda.png" alt="" class="floral-personal floral-personal-tl">
+            <img src="rosa-derecha.png" alt="" class="floral-personal floral-personal-br">
             <div class="personal-content">
                 <div>
                     <h2 class="personal-titulo">Recepción</h2>
@@ -524,6 +601,8 @@
 
         <!-- Personal 4 -->
         <div class="invitacion-personal">
+            <img src="rosa-izquierda.png" alt="" class="floral-personal floral-personal-tl">
+            <img src="rosa-derecha.png" alt="" class="floral-personal floral-personal-br">
             <div class="personal-content">
                 <div>
                     <h2 class="personal-titulo">Recepción</h2>
@@ -543,6 +622,8 @@
 
         <!-- Personal 5 -->
         <div class="invitacion-personal">
+            <img src="rosa-izquierda.png" alt="" class="floral-personal floral-personal-tl">
+            <img src="rosa-derecha.png" alt="" class="floral-personal floral-personal-br">
             <div class="personal-content">
                 <div>
                     <h2 class="personal-titulo">Recepción</h2>
@@ -562,6 +643,8 @@
 
         <!-- Personal 6 -->
         <div class="invitacion-personal">
+            <img src="rosa-izquierda.png" alt="" class="floral-personal floral-personal-tl">
+            <img src="rosa-derecha.png" alt="" class="floral-personal floral-personal-br">
             <div class="personal-content">
                 <div>
                     <h2 class="personal-titulo">Recepción</h2>
