@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presupuesto Invitaciones - Boda Alejandro y Mayra</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --crema-calido: #F8F6F0;
+            --verde-eucalipto: #2d4232;
+            --verde-salvia: #5a6e4d;
+            --dorado-elegante: #b89320;
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-sans: 'Montserrat', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: linear-gradient(135deg, var(--crema-calido) 0%, white 100%);
+            color: var(--verde-eucalipto);
+            padding: 30px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--verde-eucalipto) 0%, var(--verde-salvia) 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: var(--font-serif);
+            font-size: 42px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--verde-eucalipto);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--dorado-elegante);
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            display: grid;
+            grid-template-columns: 1fr 150px 150px;
+            gap: 15px;
+            align-items: center;
+            padding: 15px;
+            background: var(--crema-calido);
+            border-radius: 8px;
+        }
+
+        .input-group label {
+            font-weight: 600;
+            color: var(--verde-eucalipto);
+        }
+
+        .input-group input {
+            padding: 10px 15px;
+            border: 2px solid var(--verde-salvia);
+            border-radius: 6px;
+            font-size: 16px;
+            font-family: var(--font-sans);
+            text-align: right;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--dorado-elegante);
+        }
+
+        .subtotal {
+            text-align: right;
+            font-weight: 600;
+            color: var(--verde-eucalipto);
+            font-size: 18px;
+        }
+
+        .total-section {
+            background: linear-gradient(135deg, var(--verde-eucalipto) 0%, var(--verde-salvia) 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .total-row:last-child {
+            border-bottom: none;
+            padding-top: 20px;
+            margin-top: 10px;
+            border-top: 2px solid var(--dorado-elegante);
+        }
+
+        .total-label {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .total-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--dorado-elegante);
+        }
+
+        .total-row:last-child .total-label {
+            font-size: 24px;
+        }
+
+        .total-row:last-child .total-value {
+            font-size: 36px;
+        }
+
+        .notes {
+            background: #fff3cd;
+            border-left: 4px solid var(--dorado-elegante);
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 6px;
+        }
+
+        .notes h3 {
+            font-family: var(--font-serif);
+            color: var(--verde-eucalipto);
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .notes ul {
+            margin-left: 20px;
+            line-height: 1.8;
+        }
+
+        .notes li {
+            margin-bottom: 8px;
+        }
+
+        .print-button {
+            background: var(--verde-eucalipto);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            display: block;
+            margin: 30px auto;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .print-button:hover {
+            background: var(--verde-salvia);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        @media print {
+            .print-button {
+                display: none;
+            }
+            body {
+                background: white;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .input-group {
+                grid-template-columns: 1fr;
+            }
+
+            .subtotal {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-envelope-open-text"></i> Presupuesto de Invitaciones</h1>
+            <p>Boda Alejandro y Mayra - 13 de Diciembre 2025</p>
+        </div>
+
+        <div class="content">
+            <!-- Invitaciones Web -->
+            <div class="section">
+                <h2 class="section-title"><i class="fas fa-globe"></i> Invitaciones Web Digitales</h2>
+
+                <div class="input-group">
+                    <label>Desarrollo y diseño de sitio web</label>
+                    <input type="number" id="web-desarrollo" value="0" step="0.01" oninput="calcular()">
+                    <div class="subtotal" id="subtotal-web-desarrollo">$0.00</div>
+                </div>
+
+                <div class="input-group">
+                    <label>Hosting GitHub Pages (gratis)</label>
+                    <input type="number" id="web-hosting" value="0" step="0.01" oninput="calcular()">
+                    <div class="subtotal" id="subtotal-web-hosting">$0.00</div>
+                </div>
+
+                <div class="input-group">
+                    <label>Dominio personalizado (anual)</label>
+                    <input type="number" id="web-dominio" value="200" step="0.01" oninput="calcular()">
+                    <div class="subtotal" id="subtotal-web-dominio">$200.00</div>
+                </div>
+
+                <div class="input-group">
+                    <label>Códigos QR para invitaciones (50 unidades)</label>
+                    <input type="number" id="web-qr" value="0" step="0.01" oninput="calcular()">
+                    <div class="subtotal" id="subtotal-web-qr">$0.00</div>
+                </div>
+            </div>
+
+            <!-- Invitaciones Impresas -->
+            <div class="section">
+                <h2 class="section-title"><i class="fas fa-print"></i> Invitaciones Impresas</h2>
+
+                <div class="input-group">
+                    <label>Invitaciones FAMILIARES - Tamaño carta (50 unidades)</label>
+                    <input type="number" id="imp-familiar-cant" value="50" step="1" oninput="calcular()">
+                    <input type="number" id="imp-familiar-precio" value="15" step="0.01" oninput="calcular()" placeholder="Precio c/u">
+                    <div class="subtotal" id="subtotal-imp-familiar">$750.00</div>
+                </div>
+
+                <div class="input-group">
+                    <label>Invitaciones PERSONALES - Tamaño cartera (300 unidades = 50 familias × 6 por hoja)</label>
+                    <input type="number" id="imp-personal-cant" value="50" step="1" oninput="calcular()">
+                    <input type="number" id="imp-personal-precio" value="12" step="0.01" oninput="calcular()" placeholder="Precio c/u">
+                    <div class="subtotal" id="subtotal-imp-personal">$600.00</div>
+                </div>
+
+                <div class="input-group">
+                    <label>Papel especial (paquetes)</label>
+                    <input type="number" id="imp-papel-cant" value="2" step="1" oninput="calcular()">
+                    <input type="number" id="imp-papel-precio" value="350" step="0.01" oninput="calcular()" placeholder="Precio c/u">
+                    <div class="subtotal" id="subtotal-imp-papel">$700.00</div>
+                </div>
+
+                <div class="input-group">
+                    <label>Impresión a color de alta calidad</label>
+                    <input type="number" id="imp-impresion" value="800" step="0.01" oninput="calcular()">
+                    <div class="subtotal" id="subtotal-imp-impresion">$800.00</div>
+                </div>
+
+                <div class="input-group">
+                    <label>Corte y acabado profesional</label>
+                    <input type="number" id="imp-acabado" value="400" step="0.01" oninput="calcular()">
+                    <div class="subtotal" id="subtotal-imp-acabado">$400.00</div>
+                </div>
+
+                <div class="input-group">
+                    <label>Sobres (50 unidades para familiares)</label>
+                    <input type="number" id="imp-sobres-cant" value="50" step="1" oninput="calcular()">
+                    <input type="number" id="imp-sobres-precio" value="8" step="0.01" oninput="calcular()" placeholder="Precio c/u">
+                    <div class="subtotal" id="subtotal-imp-sobres">$400.00</div>
+                </div>
+
+                <div class="input-group">
+                    <label>Decoraciones adicionales (cintas, sellos, etc.)</label>
+                    <input type="number" id="imp-decoracion" value="300" step="0.01" oninput="calcular()">
+                    <div class="subtotal" id="subtotal-imp-decoracion">$300.00</div>
+                </div>
+            </div>
+
+            <!-- Totales -->
+            <div class="total-section">
+                <div class="total-row">
+                    <div class="total-label"><i class="fas fa-globe"></i> Subtotal Invitaciones Web</div>
+                    <div class="total-value" id="total-web">$200.00</div>
+                </div>
+                <div class="total-row">
+                    <div class="total-label"><i class="fas fa-print"></i> Subtotal Invitaciones Impresas</div>
+                    <div class="total-value" id="total-impreso">$3,950.00</div>
+                </div>
+                <div class="total-row">
+                    <div class="total-label"><i class="fas fa-calculator"></i> TOTAL PRESUPUESTO</div>
+                    <div class="total-value" id="total-general">$4,150.00</div>
+                </div>
+            </div>
+
+            <!-- Notas -->
+            <div class="notes">
+                <h3><i class="fas fa-info-circle"></i> Notas Importantes</h3>
+                <ul>
+                    <li><strong>Invitaciones familiares:</strong> 1 por familia (tamaño carta completo) con información de ceremonia, nombres de novios, padres y padrinos</li>
+                    <li><strong>Invitaciones personales:</strong> 6 tarjetas por hoja (tamaño cartera 9:5) con información de recepción para repartir individualmente</li>
+                    <li><strong>Total de invitaciones impresas:</strong> 50 familiares + 50 hojas de personales (300 tarjetas individuales)</li>
+                    <li><strong>Códigos QR:</strong> Se generan gratis usando servicio en línea, incluidos en las invitaciones impresas</li>
+                    <li><strong>Invitación web:</strong> Accesible desde cualquier dispositivo, permite confirmar asistencia por WhatsApp</li>
+                    <li>Los precios son estimados y pueden variar según el proveedor de impresión</li>
+                    <li>Se recomienda solicitar 5-10 invitaciones extra para reemplazos</li>
+                </ul>
+            </div>
+
+            <button class="print-button" onclick="window.print()">
+                <i class="fas fa-file-pdf"></i> Imprimir / Guardar PDF
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function formatCurrency(value) {
+            return '$' + parseFloat(value).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+        }
+
+        function calcular() {
+            // Web
+            const webDesarrollo = parseFloat(document.getElementById('web-desarrollo').value) || 0;
+            const webHosting = parseFloat(document.getElementById('web-hosting').value) || 0;
+            const webDominio = parseFloat(document.getElementById('web-dominio').value) || 0;
+            const webQr = parseFloat(document.getElementById('web-qr').value) || 0;
+
+            document.getElementById('subtotal-web-desarrollo').textContent = formatCurrency(webDesarrollo);
+            document.getElementById('subtotal-web-hosting').textContent = formatCurrency(webHosting);
+            document.getElementById('subtotal-web-dominio').textContent = formatCurrency(webDominio);
+            document.getElementById('subtotal-web-qr').textContent = formatCurrency(webQr);
+
+            const totalWeb = webDesarrollo + webHosting + webDominio + webQr;
+
+            // Impresas
+            const familiarCant = parseFloat(document.getElementById('imp-familiar-cant').value) || 0;
+            const familiarPrecio = parseFloat(document.getElementById('imp-familiar-precio').value) || 0;
+            const familiarTotal = familiarCant * familiarPrecio;
+
+            const personalCant = parseFloat(document.getElementById('imp-personal-cant').value) || 0;
+            const personalPrecio = parseFloat(document.getElementById('imp-personal-precio').value) || 0;
+            const personalTotal = personalCant * personalPrecio;
+
+            const papelCant = parseFloat(document.getElementById('imp-papel-cant').value) || 0;
+            const papelPrecio = parseFloat(document.getElementById('imp-papel-precio').value) || 0;
+            const papelTotal = papelCant * papelPrecio;
+
+            const impresion = parseFloat(document.getElementById('imp-impresion').value) || 0;
+            const acabado = parseFloat(document.getElementById('imp-acabado').value) || 0;
+
+            const sobresCant = parseFloat(document.getElementById('imp-sobres-cant').value) || 0;
+            const sobresPrecio = parseFloat(document.getElementById('imp-sobres-precio').value) || 0;
+            const sobresTotal = sobresCant * sobresPrecio;
+
+            const decoracion = parseFloat(document.getElementById('imp-decoracion').value) || 0;
+
+            document.getElementById('subtotal-imp-familiar').textContent = formatCurrency(familiarTotal);
+            document.getElementById('subtotal-imp-personal').textContent = formatCurrency(personalTotal);
+            document.getElementById('subtotal-imp-papel').textContent = formatCurrency(papelTotal);
+            document.getElementById('subtotal-imp-impresion').textContent = formatCurrency(impresion);
+            document.getElementById('subtotal-imp-acabado').textContent = formatCurrency(acabado);
+            document.getElementById('subtotal-imp-sobres').textContent = formatCurrency(sobresTotal);
+            document.getElementById('subtotal-imp-decoracion').textContent = formatCurrency(decoracion);
+
+            const totalImpreso = familiarTotal + personalTotal + papelTotal + impresion + acabado + sobresTotal + decoracion;
+
+            // Totales
+            document.getElementById('total-web').textContent = formatCurrency(totalWeb);
+            document.getElementById('total-impreso').textContent = formatCurrency(totalImpreso);
+            document.getElementById('total-general').textContent = formatCurrency(totalWeb + totalImpreso);
+        }
+
+        // Calcular al cargar la página
+        calcular();
+    </script>
+</body>
+</html>
