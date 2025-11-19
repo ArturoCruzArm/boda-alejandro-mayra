@@ -241,12 +241,6 @@
                 </div>
 
                 <div class="input-group">
-                    <label>Hosting GitHub Pages (gratis)</label>
-                    <input type="number" id="web-hosting" value="0" step="0.01" oninput="calcular()">
-                    <div class="subtotal" id="subtotal-web-hosting">$0.00</div>
-                </div>
-
-                <div class="input-group">
                     <label>Dominio personalizado (anual)</label>
                     <input type="number" id="web-dominio" value="300" step="0.01" oninput="calcular()">
                     <div class="subtotal" id="subtotal-web-dominio">$300.00</div>
@@ -355,16 +349,14 @@
         function calcular() {
             // Web
             const webDesarrollo = parseFloat(document.getElementById('web-desarrollo').value) || 0;
-            const webHosting = parseFloat(document.getElementById('web-hosting').value) || 0;
             const webDominio = parseFloat(document.getElementById('web-dominio').value) || 0;
             const webQr = parseFloat(document.getElementById('web-qr').value) || 0;
 
             document.getElementById('subtotal-web-desarrollo').textContent = formatCurrency(webDesarrollo);
-            document.getElementById('subtotal-web-hosting').textContent = formatCurrency(webHosting);
             document.getElementById('subtotal-web-dominio').textContent = formatCurrency(webDominio);
             document.getElementById('subtotal-web-qr').textContent = formatCurrency(webQr);
 
-            const totalWeb = webDesarrollo + webHosting + webDominio + webQr;
+            const totalWeb = webDesarrollo + webDominio + webQr;
 
             // Impresas
             const familiarCant = parseFloat(document.getElementById('imp-familiar-cant').value) || 0;
