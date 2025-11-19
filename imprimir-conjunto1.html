@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitaciones para Imprimir - Familiar y Personal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mr+De+Haviland&family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --crema-calido: #F8F6F0;
+            --verde-eucalipto: #2d4232;
+            --verde-salvia: #5a6e4d;
+            --dorado-elegante: #b89320;
+            --font-script: 'Mr De Haviland', cursive;
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-sans: 'Montserrat', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-serif);
+            background: white;
+            color: var(--verde-eucalipto);
+        }
+
+        @page {
+            size: letter;
+            margin: 0;
+        }
+
+        @media print {
+            .no-print {
+                display: none;
+            }
+
+            .invitation-container {
+                page-break-after: avoid;
+                page-break-inside: avoid;
+            }
+        }
+
+        .page {
+            width: 8.5in;
+            height: 11in;
+            padding: 0.5in;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5in;
+            margin: 0 auto;
+            background: white;
+        }
+
+        .invitation {
+            flex: 1;
+            border: 3px solid var(--verde-eucalipto);
+            padding: 30px;
+            position: relative;
+            background: linear-gradient(135deg, var(--crema-calido) 0%, white 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .invitation::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 1px solid var(--dorado-elegante);
+            pointer-events: none;
+        }
+
+        .tipo-invitacion {
+            text-align: center;
+            font-family: var(--font-sans);
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--dorado-elegante);
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+        }
+
+        .header {
+            text-align: center;
+        }
+
+        .subtitle {
+            font-family: var(--font-sans);
+            font-size: 12px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: var(--verde-salvia);
+            margin-bottom: 8px;
+        }
+
+        .title {
+            font-family: var(--font-script);
+            font-size: 48px;
+            color: var(--verde-eucalipto);
+            margin-bottom: 15px;
+            line-height: 1;
+        }
+
+        .nombres {
+            font-family: var(--font-serif);
+            font-size: 36px;
+            font-weight: 600;
+            color: var(--verde-eucalipto);
+            margin: 15px 0;
+            line-height: 1.2;
+        }
+
+        .ampersand {
+            font-family: var(--font-script);
+            font-size: 28px;
+            color: var(--dorado-elegante);
+        }
+
+        .fecha-info {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .mes {
+            font-family: var(--font-sans);
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            color: var(--verde-salvia);
+        }
+
+        .dia-numero-hora {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-top: 8px;
+        }
+
+        .dia, .hora {
+            font-family: var(--font-sans);
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--verde-eucalipto);
+        }
+
+        .numero {
+            font-family: var(--font-serif);
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--verde-eucalipto);
+        }
+
+        .evento {
+            text-align: center;
+            margin: 15px 0;
+            padding: 15px 0;
+            border-top: 1px solid var(--verde-salvia);
+            border-bottom: 1px solid var(--verde-salvia);
+        }
+
+        .evento-titulo {
+            font-family: var(--font-sans);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: var(--dorado-elegante);
+            margin-bottom: 8px;
+        }
+
+        .evento-nombre {
+            font-family: var(--font-serif);
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--verde-eucalipto);
+            margin-bottom: 4px;
+        }
+
+        .evento-direccion {
+            font-family: var(--font-sans);
+            font-size: 10px;
+            color: var(--verde-salvia);
+            line-height: 1.4;
+        }
+
+        .evento-hora {
+            font-family: var(--font-sans);
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--verde-eucalipto);
+            margin-top: 5px;
+        }
+
+        .qr-section {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .qr-text {
+            font-family: var(--font-sans);
+            font-size: 10px;
+            color: var(--verde-salvia);
+            margin-bottom: 8px;
+        }
+
+        .url {
+            font-family: var(--font-sans);
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--verde-eucalipto);
+        }
+
+        .footer-note {
+            text-align: center;
+            font-family: var(--font-sans);
+            font-size: 9px;
+            color: var(--verde-salvia);
+            font-style: italic;
+        }
+
+        .print-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 30px;
+            background: var(--verde-eucalipto);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-family: var(--font-sans);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+
+        .print-button:hover {
+            background: var(--verde-salvia);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .decoracion-floral {
+            text-align: center;
+            font-size: 20px;
+            color: var(--dorado-elegante);
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <button class="print-button no-print" onclick="window.print()">🖨️ Imprimir Invitaciones</button>
+
+    <div class="page">
+        <!-- INVITACIÓN FAMILIAR -->
+        <div class="invitation">
+            <div>
+                <div class="tipo-invitacion">INVITACIÓN FAMILIAR</div>
+
+                <div class="header">
+                    <p class="subtitle">TE INVITAMOS A</p>
+                    <h1 class="title">Nuestra Boda</h1>
+                </div>
+
+                <div style="text-align: center;">
+                    <div class="nombres">
+                        Alejandro <br>
+                        <span class="ampersand">y</span> <br>
+                        Mayra
+                    </div>
+                </div>
+
+                <div class="fecha-info">
+                    <p class="mes">DICIEMBRE</p>
+                    <div class="dia-numero-hora">
+                        <span class="dia">SÁBADO</span>
+                        <span class="numero">13</span>
+                        <span class="hora">7:00 PM</span>
+                    </div>
+                </div>
+
+                <div class="evento">
+                    <p class="evento-titulo">CEREMONIA RELIGIOSA</p>
+                    <p class="evento-hora">7:00 PM</p>
+                    <p class="evento-nombre">Parroquia San Juan Bautista de la Salle</p>
+                    <p class="evento-direccion">Iztaccíhuatl 2113, Piletas IV, León, Gto.</p>
+                </div>
+
+                <div class="evento">
+                    <p class="evento-titulo">RECEPCIÓN</p>
+                    <p class="evento-hora">8:30 PM</p>
+                    <p class="evento-nombre">Salón el Mirador</p>
+                    <p class="evento-direccion">Blvd. Juan Alonso de Torres Pte. #3755, Piletas I y II, León, Gto.</p>
+                </div>
+
+                <div class="qr-section">
+                    <p class="qr-text">Consulta todos los detalles en:</p>
+                    <p class="url">boda-alejandro-mayra.invitados.org</p>
+                </div>
+            </div>
+
+            <p class="footer-note">Favor de confirmar asistencia</p>
+        </div>
+
+        <!-- INVITACIÓN PERSONAL -->
+        <div class="invitation">
+            <div>
+                <div class="tipo-invitacion">INVITACIÓN PERSONAL</div>
+
+                <div class="header">
+                    <p class="subtitle">TE INVITAMOS A</p>
+                    <h1 class="title">Nuestra Boda</h1>
+                </div>
+
+                <div style="text-align: center;">
+                    <div class="nombres">
+                        Alejandro <br>
+                        <span class="ampersand">y</span> <br>
+                        Mayra
+                    </div>
+                </div>
+
+                <div class="fecha-info">
+                    <p class="mes">DICIEMBRE</p>
+                    <div class="dia-numero-hora">
+                        <span class="dia">SÁBADO</span>
+                        <span class="numero">13</span>
+                        <span class="hora">7:00 PM</span>
+                    </div>
+                </div>
+
+                <div class="evento">
+                    <p class="evento-titulo">CEREMONIA RELIGIOSA</p>
+                    <p class="evento-hora">7:00 PM</p>
+                    <p class="evento-nombre">Parroquia San Juan Bautista de la Salle</p>
+                    <p class="evento-direccion">Iztaccíhuatl 2113, Piletas IV, León, Gto.</p>
+                </div>
+
+                <div class="evento">
+                    <p class="evento-titulo">RECEPCIÓN</p>
+                    <p class="evento-hora">8:30 PM</p>
+                    <p class="evento-nombre">Salón el Mirador</p>
+                    <p class="evento-direccion">Blvd. Juan Alonso de Torres Pte. #3755, Piletas I y II, León, Gto.</p>
+                </div>
+
+                <div class="qr-section">
+                    <p class="qr-text">Consulta todos los detalles en:</p>
+                    <p class="url">boda-alejandro-mayra.invitados.org</p>
+                </div>
+            </div>
+
+            <p class="footer-note">Favor de confirmar asistencia</p>
+        </div>
+    </div>
+</body>
+</html>
