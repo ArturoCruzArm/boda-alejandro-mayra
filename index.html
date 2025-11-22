@@ -178,7 +178,7 @@
 
                 <div class="video-container">
                     <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/jnL5KY3d4Hw?rel=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <div id="youtube-player-boda"></div>
                     </div>
                     <p class="video-description">Momentos especiales de nuestro camino juntos</p>
                 </div>
@@ -417,5 +417,56 @@
     </footer>
 
     <script src="script.js"></script>
+
+    <!-- YouTube Player API -->
+    <script>
+        var playerBoda;
+        function onYouTubeIframeAPIReady() {
+            playerBoda = new YT.Player('youtube-player-boda', {
+                videoId: 'jnL5KY3d4Hw',
+                playerVars: {
+                    'rel': 0,
+                    'modestbranding': 1,
+                    'playsinline': 1
+                },
+                events: {
+                    'onReady': onPlayerBodaReady,
+                    'onStateChange': onPlayerBodaStateChange
+                }
+            });
+        }
+
+        function onPlayerBodaReady(event) {
+            var availableQualities = playerBoda.getAvailableQualityLevels();
+            if (availableQualities.indexOf('hd1080') !== -1) {
+                playerBoda.setPlaybackQuality('hd1080');
+            } else if (availableQualities.indexOf('hd720') !== -1) {
+                playerBoda.setPlaybackQuality('hd720');
+            } else if (availableQualities.indexOf('large') !== -1) {
+                playerBoda.setPlaybackQuality('large');
+            }
+        }
+
+        function onPlayerBodaStateChange(event) {
+            if (event.data == YT.PlayerState.PLAYING || event.data == YT.PlayerState.BUFFERING) {
+                var currentQuality = playerBoda.getPlaybackQuality();
+                if (currentQuality !== 'hd1080' && currentQuality !== 'hd720') {
+                    var availableQualities = playerBoda.getAvailableQualityLevels();
+                    if (availableQualities.indexOf('hd1080') !== -1) {
+                        playerBoda.setPlaybackQuality('hd1080');
+                    } else if (availableQualities.indexOf('hd720') !== -1) {
+                        playerBoda.setPlaybackQuality('hd720');
+                    }
+                }
+            }
+        }
+
+        if (!window.YT) {
+            var tag = document.createElement('script');
+            tag.src = "https://www.youtube.com/iframe_api";
+            var firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        }
+    </script>
 </body>
 </html>
