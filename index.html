@@ -333,6 +333,37 @@
             </div>
         </section>
 
+        <!-- 9.5 Photo Gallery Section -->
+        <section class="content-section" data-section="gallery">
+            <div class="hero-content">
+                <p class="hero-subtitle">REVIVE NUESTROS MOMENTOS</p>
+                <h1 class="hero-title">GALERÍA DE FOTOS</h1>
+
+                <!-- Filtros -->
+                <div class="gallery-filters">
+                    <button class="filter-btn active" data-filter="all">
+                        <i class="fas fa-images"></i> Todas
+                    </button>
+                    <button class="filter-btn" data-filter="ceremonia">
+                        <i class="fas fa-church"></i> Ceremonia
+                    </button>
+                    <button class="filter-btn" data-filter="fiesta">
+                        <i class="fas fa-glass-cheers"></i> Fiesta
+                    </button>
+                </div>
+
+                <!-- Grid de fotos -->
+                <div class="photo-gallery-grid" id="photoGallery">
+                    <div class="gallery-loading">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Cargando fotos...</p>
+                    </div>
+                </div>
+
+                <div class="scroll-indicator"><i class="fas fa-chevron-down"></i></div>
+            </div>
+        </section>
+
         <!-- 10. RSVP Section -->
         <section class="content-section" data-section="rsvp">
             <div class="hero-content">
@@ -400,6 +431,30 @@
         </section>
 
     </main>
+
+    <!-- Lightbox para ver fotos en tamaño completo -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightboxClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <button class="lightbox-prev" id="lightboxPrev">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="lightbox-next" id="lightboxNext">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <div class="lightbox-image-container">
+                <img id="lightboxImage" src="" alt="Foto de la boda">
+            </div>
+            <div class="lightbox-info">
+                <span id="lightboxCounter">1 / 377</span>
+                <button class="lightbox-download" id="lightboxDownload">
+                    <i class="fas fa-download"></i> Descargar
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">

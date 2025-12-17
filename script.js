@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initContentTransitions();
     initScrollAnimations();
     initSmoothScroll();
+    initPhotoGallery();
 });
 
 // ===================================
@@ -192,6 +193,8 @@ function initContentTransitions() {
                     animateRSVPSection(entry.target);
                 } else if (sectionType === 'info') {
                     animateInfoSection(entry.target);
+                } else if (sectionType === 'gallery') {
+                    animateGallerySection(entry.target);
                 }
             }
         });
@@ -562,6 +565,31 @@ function animatePadrinosSection(section) {
     });
 }
 
+// Animación para sección de galería
+function animateGallerySection(section) {
+    if (section.dataset.animated === 'true') return;
+    section.dataset.animated = 'true';
+
+    const heroSubtitle = section.querySelector('.hero-subtitle');
+    const heroTitle = section.querySelector('.hero-title');
+    const filterButtons = section.querySelectorAll('.filter-btn');
+
+    if (heroSubtitle) animateTextLetterByLetter(heroSubtitle, 0, 30);
+    if (heroTitle) animateTextLetterByLetter(heroTitle, 300, 30);
+
+    filterButtons.forEach((btn, index) => {
+        setTimeout(() => {
+            btn.style.opacity = '0';
+            btn.style.transform = 'translateY(20px)';
+            btn.style.transition = 'all 0.5s ease-out';
+            setTimeout(() => {
+                btn.style.opacity = '1';
+                btn.style.transform = 'translateY(0)';
+            }, 50);
+        }, 600 + (index * 100));
+    });
+}
+
 // Animación para el footer
 function animateFooter(footer) {
     if (footer.dataset.animated === 'true') return;
@@ -743,5 +771,223 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+// ===================================
+// GALERÍA DE FOTOS
+// ===================================
+let allPhotos = [];
+let filteredPhotos = [];
+let currentPhotoIndex = 0;
+
+function initPhotoGallery() {
+    loadPhotos();
+    initGalleryFilters();
+    initLightbox();
+}
+
+// Cargar fotos desde el archivo JSON
+async function loadPhotos() {
+    const galleryContainer = document.getElementById('photoGallery');
+
+    try {
+        const response = await fetch('fotos.json');
+        const data = await response.json();
+        allPhotos = data.photos || [];
+        filteredPhotos = [...allPhotos];
+
+        renderGallery();
+        console.log(`✅ ${allPhotos.length} fotos cargadas`);
+    } catch (error) {
+        console.error('Error al cargar fotos:', error);
+        galleryContainer.innerHTML = `
+            <div class="gallery-loading">
+                <i class="fas fa-exclamation-triangle"></i>
+                <p>Error al cargar las fotos. Por favor, intenta más tarde.</p>
+            </div>
+        `;
+    }
+}
+
+// Renderizar galería
+function renderGallery() {
+    const galleryContainer = document.getElementById('photoGallery');
+
+    if (filteredPhotos.length === 0) {
+        galleryContainer.innerHTML = `
+            <div class="gallery-loading">
+                <i class="fas fa-images"></i>
+                <p>No hay fotos para mostrar.</p>
+            </div>
+        `;
+        return;
+    }
+
+    galleryContainer.innerHTML = filteredPhotos.map((photo, index) => `
+        <div class="photo-item" data-index="${index}" data-category="${photo.category}">
+            <img src="${photo.thumbnail || photo.src}" alt="${photo.name}" loading="lazy">
+            <div class="photo-overlay">
+                <span class="photo-category">${getCategoryName(photo.category)}</span>
+            </div>
+        </div>
+    `).join('');
+
+    // Agregar event listeners a las fotos
+    document.querySelectorAll('.photo-item').forEach(item => {
+        item.addEventListener('click', function() {
+            const index = parseInt(this.dataset.index);
+            openLightbox(index);
+        });
+    });
+}
+
+// Obtener nombre de categoría
+function getCategoryName(category) {
+    const names = {
+        'ceremonia': 'Ceremonia',
+        'fiesta': 'Fiesta',
+        'all': 'Todas'
+    };
+    return names[category] || category;
+}
+
+// Inicializar filtros
+function initGalleryFilters() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+
+    filterButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            // Remover clase active de todos los botones
+            filterButtons.forEach(b => b.classList.remove('active'));
+
+            // Agregar clase active al botón clickeado
+            this.classList.add('active');
+
+            // Filtrar fotos
+            const filter = this.dataset.filter;
+            filterPhotos(filter);
+        });
+    });
+}
+
+// Filtrar fotos
+function filterPhotos(category) {
+    if (category === 'all') {
+        filteredPhotos = [...allPhotos];
+    } else {
+        filteredPhotos = allPhotos.filter(photo => photo.category === category);
+    }
+
+    renderGallery();
+    console.log(`Filtrado por: ${category}, ${filteredPhotos.length} fotos`);
+}
+
+// ===================================
+// LIGHTBOX
+// ===================================
+function initLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    const closeBtn = document.getElementById('lightboxClose');
+    const prevBtn = document.getElementById('lightboxPrev');
+    const nextBtn = document.getElementById('lightboxNext');
+    const downloadBtn = document.getElementById('lightboxDownload');
+
+    // Cerrar lightbox
+    closeBtn.addEventListener('click', closeLightbox);
+
+    // Cerrar con ESC
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') prevPhoto();
+        if (e.key === 'ArrowRight') nextPhoto();
+    });
+
+    // Cerrar al hacer click en el fondo
+    lightbox.addEventListener('click', function(e) {
+        if (e.target === lightbox) {
+            closeLightbox();
+        }
+    });
+
+    // Navegación
+    prevBtn.addEventListener('click', prevPhoto);
+    nextBtn.addEventListener('click', nextPhoto);
+
+    // Descargar
+    downloadBtn.addEventListener('click', downloadCurrentPhoto);
+}
+
+function openLightbox(index) {
+    currentPhotoIndex = index;
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightboxImage');
+    const lightboxCounter = document.getElementById('lightboxCounter');
+
+    const photo = filteredPhotos[currentPhotoIndex];
+
+    if (!photo) return;
+
+    lightboxImage.src = photo.src;
+    lightboxCounter.textContent = `${currentPhotoIndex + 1} / ${filteredPhotos.length}`;
+
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Prevenir scroll
+
+    console.log(`Lightbox abierto: ${photo.name}`);
+}
+
+function closeLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    lightbox.classList.remove('active');
+    document.body.style.overflow = ''; // Restaurar scroll
+}
+
+function prevPhoto() {
+    currentPhotoIndex--;
+    if (currentPhotoIndex < 0) {
+        currentPhotoIndex = filteredPhotos.length - 1;
+    }
+    updateLightboxImage();
+}
+
+function nextPhoto() {
+    currentPhotoIndex++;
+    if (currentPhotoIndex >= filteredPhotos.length) {
+        currentPhotoIndex = 0;
+    }
+    updateLightboxImage();
+}
+
+function updateLightboxImage() {
+    const lightboxImage = document.getElementById('lightboxImage');
+    const lightboxCounter = document.getElementById('lightboxCounter');
+    const photo = filteredPhotos[currentPhotoIndex];
+
+    if (!photo) return;
+
+    // Agregar efecto fade
+    lightboxImage.style.opacity = '0';
+
+    setTimeout(() => {
+        lightboxImage.src = photo.src;
+        lightboxCounter.textContent = `${currentPhotoIndex + 1} / ${filteredPhotos.length}`;
+        lightboxImage.style.opacity = '1';
+    }, 150);
+}
+
+function downloadCurrentPhoto() {
+    const photo = filteredPhotos[currentPhotoIndex];
+
+    if (!photo) return;
+
+    // Crear un enlace temporal para descargar
+    const link = document.createElement('a');
+    link.href = photo.src;
+    link.download = photo.name;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    console.log(`Descargando: ${photo.name}`);
+}
 
 console.log('%c✨ Invitación cargada exitosamente ✨', 'font-size: 14px; color: #D4AF37; font-weight: bold;');
