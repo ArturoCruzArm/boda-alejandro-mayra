@@ -651,6 +651,11 @@ const photos = [
     'fotos/IMG_6829.webp',
     'fotos/IMG_6830.webp'
 ];
+// Thumbnail helper: usa thumb/ en grid para ahorrar RAM en moviles
+function getThumbPath(fullPath) {
+    return fullPath.replace('fotos/', 'fotos/thumb/');
+}
+
 
 const STORAGE_KEY = 'boda_alejandro_mayra_photo_selections';
 let photoSelections = {};
@@ -811,7 +816,7 @@ function renderGallery() {
         } else {
             mediaHTML = `
                 <div class="photo-image-container">
-                    <img src="${photo}" alt="${displayNumber}" loading="lazy">
+                    <img src="${getThumbPath(photo)}" alt="${displayNumber}" loading="lazy">
                 </div>
             `;
         }
